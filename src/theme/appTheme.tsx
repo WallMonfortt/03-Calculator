@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     result: {
         color: 'white',
         fontSize: 60,
+        marginBottom: 10,
         textAlign: 'right',
     }, 
     resultSmall: {
@@ -21,21 +22,13 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'right',
     },
-    button: {
-        height: 80,
-        width: 80,
-        backgroundColor: '#9B9B9B',
-        borderRadius: 100,
+    row: {
+        flexDirection: 'row',
         justifyContent: 'center',
-        marginHorizontal: 10,
+        marginBottom: 18,
+        paddingHorizontal: 10,
     },
-    textButton: {
-        textAlign: 'center',
-        padding: 10,
-        fontSize: 30,
-        color: 'black',
-        fontWeight: '300',
-    },
+    
 });
 
 export default styles;
