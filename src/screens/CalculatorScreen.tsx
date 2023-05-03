@@ -20,9 +20,12 @@ export const CalculatorScreen = () => {
       // Punto decimal
       if (textNumber === '.') {
         setNumber(number + textNumber)
-
+        // evaluar si es negativo
+      } else if(number.startsWith('-0')){
+        setNumber('-' + textNumber)
+        
         // Evaluar si es otro cero, y hay un punto 
-      } else if (textNumber === '0' && number.includes('.')) {
+      }else if (textNumber === '0' && number.includes('.')) {
         setNumber(number + textNumber)
 
       }else if (textNumber !== '0' && !number.includes('.')) {
@@ -48,6 +51,14 @@ export const CalculatorScreen = () => {
     }
   }
 
+  const btnDelete = () => {
+    if (number.length === 1 || (number.length === 2 && number.includes('-'))) {
+      setNumber('0')
+    } else {
+      setNumber(number.slice(0, -1))
+    }
+  }
+
   return (
     <View style={styles.calculatorcontainer}>
       <Text style={styles.resultSmall}>{prevNumber}</Text>
@@ -61,7 +72,7 @@ export const CalculatorScreen = () => {
         {/* Button */}
         <ButtonCalc text="C" action ={clear} color="#9B9B9B" />
         <ButtonCalc text="+/-" action ={positiveNegative} color="#9B9B9B" />
-        <ButtonCalc text="del" action ={clear} color="#9B9B9B" />
+        <ButtonCalc text="del" action ={btnDelete} color="#9B9B9B" />
         <ButtonCalc text="/" action ={clear} color="#FF9427" />
         {/* #2D2D2D  dark gray */}
       </View>
