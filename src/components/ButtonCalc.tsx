@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -9,23 +8,24 @@ interface Props {
     text: string;
     color?: string;
     widther?: boolean;
+    action: ( textNumber: string) => void;
 }
 
-export const ButtonCalc = ({text, color = '#2D2D2D', widther = false}: Props) => {
+export const ButtonCalc = ({text, color = '#2D2D2D', widther = false, action}: Props) => {
   return (
-    < TouchableOpacity activeOpacity={0.8} >
-        <View style={{
+    < TouchableOpacity activeOpacity = {0.8} onPress = { () => action(text) } >
+        <View style = {{
             ...styles.button,
-            backgroundColor: color,
+            backgroundColor: color,  
         }}>
-            <Text style={{
+            <Text style = {{
                 ...styles.textButton,
                 color: color === '#9B9B9B' ? 'black' : 'white',
                 width: widther ? 2 * screenWidth * 0.21 : screenWidth * 0.2,
             }}>
                 {text}
             </Text>
-        </View>
+        </View> 
     </TouchableOpacity>
   )
 }
