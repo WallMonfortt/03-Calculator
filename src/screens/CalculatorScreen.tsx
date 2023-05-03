@@ -21,22 +21,30 @@ export const CalculatorScreen = () => {
       if (textNumber === '.') {
         setNumber(number + textNumber)
 
-        // Evaluar si es otro cero, y hay un punto
+        // Evaluar si es otro cero, y hay un punto 
       } else if (textNumber === '0' && number.includes('.')) {
         setNumber(number + textNumber)
 
+      }else if (textNumber !== '0' && !number.includes('.')) {
         // Evaluar si es diferente de cero y no tiene un punto
-      } else if (textNumber !== '0' && !number.includes('.')) {
         setNumber(textNumber)
-        
-        // Evitar 0000.0
+
       } else if (textNumber === '0' && !number.includes('.')) {
+        // Evitar 0000.0
         setNumber(number)
-      } else {
+      }else {
         setNumber(number + textNumber)
       }
-    } else {
+    }else{
       setNumber(number + textNumber)
+    }
+  }
+
+  const positiveNegative = () => {
+    if (number.includes('-')) {
+      setNumber(number.replace('-', ''))
+    } else {
+      setNumber('-' + number)
     }
   }
 
@@ -52,7 +60,7 @@ export const CalculatorScreen = () => {
       <View style={styles.row}>
         {/* Button */}
         <ButtonCalc text="C" action ={clear} color="#9B9B9B" />
-        <ButtonCalc text="+/-" action ={clear} color="#9B9B9B" />
+        <ButtonCalc text="+/-" action ={positiveNegative} color="#9B9B9B" />
         <ButtonCalc text="del" action ={clear} color="#9B9B9B" />
         <ButtonCalc text="/" action ={clear} color="#FF9427" />
         {/* #2D2D2D  dark gray */}
@@ -84,7 +92,7 @@ export const CalculatorScreen = () => {
       <View style={styles.row}>
         {/* Button */}
         <ButtonCalc text="0" action={buidNumber} widther />
-        <ButtonCalc text="." action ={clear} />
+        <ButtonCalc text="." action ={buidNumber} />
         <ButtonCalc text="=" action ={clear} color="#FF9427" />
         {/* #2D2D2D  dark gray */}
       </View>
